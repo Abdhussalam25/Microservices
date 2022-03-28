@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//udemy.com//Udemy
+METHOD:PUBLISH
+BEGIN:VEVENT
+ORGANIZER;CN="Udemy":mailto:no-reply@udemy.com
+SUMMARY:Microservices
+SEQUENCE:0
+DTSTAMP:20220323T072325Z
+DTSTART;TZID=Asia/Calcutta:20220323T211500
+DTEND;TZID=Asia/Calcutta:20220323T214500
+UID:238384
+RRULE:FREQ=DAILY;UNTIL=20220530T183000Z
+DESCRIPTION:Master Microservices with Spring Boot and Spring Cloud (https://www.udemy.com/course/microservices-with-spring-boot-and-spring-cloud/learn/)
+
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Microservices
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,355 @@
+Eureka server itself a microservice
+
+https://javatechonline.com/how-to-register-discover-microservices-using-netflix-eureka/
+
+service registry & 
+discovery in the context of 
+microservices
+
+what is service Registry in Microservices?
+
+service registry is the process 
+of registering
+a microservice with Eureka Server.
+
+Eureka server is a center point
+
+discovery--consuming the services
+
+discovery
+
+What is Service Discovery in Microservices?
+Service Discovery is the process of discovering other microservices in the network to make intra-communication happen.
+ However, a microservice first connects with Eureka to discover other microservice to make communicating with each other. 
+Using Service Discovery, one microservice can connect with the other microservice via Eureka.
+
+
+
+Microservice
+
+1) Eureka server has to be created
+
+     a) Single application with euruka server starter
+     b) @EnableEurekaServer
+     c)change application.properties
+
+SERVER dont register server
+Producer --> register in server
+consumer ---> register in server
+
+Consumer--- RestTemplate,Feign Client
+Feign Client is better than RestTemplate
+
+
+
+from BASIC==========
+
+
+ 1. Intro to webservices
+
+ 2. RESTful web service - 35 steps
+
+ 3. Microservices with Spring Cloud - 45 steps
+
+ 4.Spring boot in 10 steps
+
+ 5.JPA in 10 steps
+
+
+ 1. Intro to webservices======================
+
+basic    a.http request methods
+	 b. get post delete
+         c.Exception Handling 
+	 d.Validation
+	 e.HATEOAS
+         F.Http response status
+
+ADVANCED: 
+         A. VERSIONING
+	 B.SWAGGER
+	 C.FILTERING
+	 D.MONITORING
+	 E.CONTENT NEGOTIABLE
+	 F.INTERNATIONALIZATION
+INTRO TO WEBSERVICES=====================
+
+WEB SERVICE: 
+
+Softeware system designed to support 
+Interoperable
+Machine-to-Machine intraction (application - to application)
+Over a network.
+
+
+input to a webservice= == request
+
+output from webservice === response
+
+webservices should be plateform independent
+
+request and response also platform independent
+
+
+1) XML format
+2) JSON --javascript Object Notation
+
+how does application A how to send and where to send
+and in which formate it should be sent??
+
+Solution is SERVICE DEFINITION  -- SWAGGER
+
+request/response format
+request structure
+response struncture
+endpoint
+
+=====
+
+request, response, message exchange format
+service provider and
+service consumer
+
+provider --  which hosts the webservice
+
+consumer  -- who is using this service
+
+Transport --- HTTP  or MQ
+
+TWO TYPES OF WEBSERVICES===============
+
+SOAP -- Simple Object Access Protocol
+
+message converting format----> XML
+
+
+similar to a letter model
+
+Envelope .. header .... Body
+
+header is optional.
+
+SOAP:
+SOAP XML Request
+SOAP SML Response
+
+Transport
+SOAP over MQ
+SOAP over HTTP
+
+Service Definition    
+WSDL  == Web Service Definition Language
+----> Request Structure
+    ----->Response Structure
+    ----->EndPoints
+    ------>All Operations
+=============================
+RESTFUL WEBSERVICES
+===================
+REpresentaional State Transfer
+
+Making best use HTTP
+
+HTTP methods: GET,POST,DELETE..
+HTTP status code: 200,201,404,403,500
+
+KEY abstraction
+RESOURCE:
+resource has an URI:(Uniform Resouce Identifier)
+
+../user/Ranga/todos/1
+../user/Ranga/todos
+
+REST
+
+Data exchange format -- no restriction 
+but json is popular
+
+Transport -- only HTTP
+
+Service Definition ---> NO standard,
+  WADL  Web Application Definition Language
+  SWAGGER..
+RESTFUL WEBSERVICES======================
+
+basic    a.http request methods
+	 b. get post delete
+         c.Exception Handling 
+	 d.Validation
+	 e.HATEOAS
+         F.Http response status
+
+ADVANCED: 
+         A. VERSIONING
+	 B.SWAGGER
+	 C.FILTERING
+	 D.MONITORING
+	 E.CONTENT NEGOTIABLE
+	 F.INTERNATIONALIZATION
+stEPS=============
+Step 1. Creating a rest project
+step 2. Understanding the REST services
+    03. Creating HelloWorld RESTSERVice
+
+2.step 2  ============= 
+
+REST is a style of software architecture for 
+distributed hypermedia systems
+
+MAke best use of http
+
+a)Methods     ---> get,put,post,delete
+b)status code --->200,201,404,403,500
+
+  MAIN note--> RESOURCE
+
+Resource uri should be unique
+
+Retreive all Users - GET 	 /users
+Create a User      - POST	 /users
+Retreive one User  - GEt 	 /users/{id} -- users/1
+Delete a User      - DELETE  	 /users/{id} --/users/1
+
+====Consider a social media application Ex FACEBOOK
+
+-Retreive all posts for a User - GET  /users/{id}/posts
+-Create a posts for a User     - POST /users/{id}posts
+-Retreive details of a post    - GET  /users/{id}/posts/{post_id}
+
+Some items has to be hided from the url 
+or it has to be encripted.
+
+======03.Creating HelloWorld RESTSERVice
+package com.salambasha.rest.webservices.Helloword;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloWorldController {
+
+	@GetMapping("/greetings")
+//RequestMapping( method = RequestMethod.GET, path = "/greetings")
+	public String sayGreetings() {
+		
+		return "Assalaamu alaikkum rahmathullaahi barakkaathuhu";
+	}
+	
+}
+========04.Enhancing the same application to return a bean.
+
+NOTE:: If the required bean doesn't contain 
+getters the we will get 500 error with the error 
+message
+NO Converter found for return value of type: ....HelloWorldBean
+
+if there is no getters then there is no automatic conversion will happen.
+
+	@GetMapping("/bean")
+	//RequestMapping( method = RequestMethod.GET, path = "/greetings")
+		public HelloWorldBean retrunHelloWorldBean() {
+			
+			return  new HelloWorldBean("Assalaamu alaikkum Rahmathullaahi barakkaathuhu");
+		}
+	
+
+
+========05Quick Review of spring boot autoconfiguration
+
+  What is dispatcher servlet?
+  who is configuring dispatcher servlet?
+  what does dispatcher servlet do?
+  How does the HelloWorldBean object get converted to JSON?
+  who is configuring the error mapping?
+
+in application.properties
+
+logging.level.org.springframework = debug  
+
+AUTO - CONFIGURATION
+
+contains all the details of classes which it 
+autoconfigured like dispatcher servlet, error page
+configuration, ex white lable error page,
+HTTP messageconverter, object --- json
+jacksontoobject mapper  json   -- object
+
+
+dispatcher servlet to [/] root map
+
+FrontController for spring web mvc framework
+
+@RestControler  = @Controller + @ResponseBody
+
+=======06.Enhancing with pathvariable 
+
+	@GetMapping("/bean/path-variable/{name}")
+	//RequestMapping( method = RequestMethod.GET, path = "/greetings")
+		public HelloWorldBean HelloWorldWithPathVariable( @PathVariable String name) {
+			
+			return  new HelloWorldBean(String.format("Assalaamu alaikkum Rahmathullaahi barakkaathuhu , %s",name));
+		}
+
+
+
+========07.Creating User bean and User service
+
+   There was an unexpected error (type=Internal Server Error, status=500).
+Cannot invoke "com.salambasha.rest.webservices.services.UserDaoService.findAll()" because "this.service" is null
+java.lang.NullPointerException: Cannot invoke "com.salambasha.rest.webservices.services.UserDaoService.findAll()" because "this.service" is null
+
+this is becaus of missiong @Autowired.
+
+
+========08.Creting Get Method for user resource
+    
+
+
+
+========09.implementing Post for creating a user
+
+
+
+
+=========10. Created STatus code and location of newly created URI
+@PostMapping("/users")
+	public ResponseEntity<Object> createUser(@RequestBody User user) {
+		
+	User savedUser = 	service.save(user);
+	URI location = ServletUriComponentsBuilder
+	.fromCurrentRequest()
+	.path("/{id}")
+	.buildAndExpand(savedUser.getId()).toUri();
+	
+	return ResponseEntity.created(location).build();	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+          
+      
+
+
+
+
+
