@@ -1,0 +1,73 @@
+
+REpresentational State Transfer
+
+RESOURCE 
+URI is unique:
+Retreive all users - GET/users
+Create User - POST/user
+Retreive one user - GET/users/{id}
+Delete a User - DELETE/users/{id} --
+
+
+Social Media Application 
+
+Single user has multiple posts
+
+
+Retreive all posts for a user
+-GET/users/{id}/posts
+Create a post for a User - POST/users/{id}/posts
+Retreive details of a post - GET/users/{id}/posts/{post_id}
+
+@RestController
+
+//@RequestMapping(method = RequestMethod.GET path = "/salam" // 
+
+@GetMapping("/salam")   
+public String HelloWord(){
+return "Assalaamu alaikkum";
+}
+
+In bean returning programm:
+
+No converter found for return value of type: -- Fully classified bean name
+
+Solution: Getter has to be there: both getter and setter has to be there.
+
+What is dispatcher servlet?
+
+logging,level.org.springframework = debug;
+includes autoconfiguration report
+spring boot starter web -> spring web mvc
+class path dispatcher servlet
+errorMvcAutoConfiguration-- Whitelable error page
+HttpMessageConverter, 
+JacksonAutoConfiguration - Object to json and json to object
+mapping servlet : dispatcherServlet' to [./]
+FrontController of spring mvc framework is dispatcher servelet
+Check and execute URI and request mapping
+@Controller & @ResponseBody creates the @RestController
+message converter --> Jackson
+bean to json - returns the response.
+
+KEYROLE in MVC and spring rest then Dispatcher servlet i
+
+
+@RequestBody User user
+
+This annotation we will use it in the POst method for creating an user 
+In this case we have to give json body as input which will be mapped with the entity class 
+automatically by @RequestBody
+
+How to set the URI of the created resource into the response?
+RE -- returns the status code
+how do I create URI location =  ServletComponetsBuilder.fromCurrentRequest().fromCurrentRequest().path("/{id}").buildAndExpand(uriVariables)
+path method allowed to append some string with the current uri.
+
+ResponseEntity.created(location)
+
+
+
+
+
+
